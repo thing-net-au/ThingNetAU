@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFrameworks>net48;netstandard2.1;net6.0</TargetFrameworks>
+	<Nullable>disable</Nullable>
+	<Platforms>AnyCPU;x86;x64</Platforms>
+	<SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>thingnetau.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>ThingNetAU.Parsers</PackageId>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+	<LangVersion>9.0</LangVersion>
+	<SignAssembly>True</SignAssembly>
+	<Title>Parsers</Title>
+	<Company>thing.net.au</Company>
+	<PackageProjectUrl>https://thing.net.au/libraries/tlstandard</PackageProjectUrl>
+	<Description>
+	  **ACTIVE DEVELOPMENT**
+	  This library aims to standardise Cosmos across Systems.
+	</Description>
+	<Copyright>thing.net.au</Copyright>
+	<RepositoryType>git</RepositoryType>
+	<RepositoryUrl>https://github.com/thing-net-au/TranslogixTypes</RepositoryUrl>
+	<AssemblyVersion>1.0.1</AssemblyVersion>
+	<FileVersion>$(AssemblyVersion)</FileVersion>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<PackageLicenseExpression>CC-BY-4.0</PackageLicenseExpression>
+	<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+	<GenerateDocumentationFile>False</GenerateDocumentationFile>
+	<Version>$(AssemblyVersion)</Version>
+	<AssemblyOriginatorKeyFile>C:\Users\scott.OFFICE\source\repos\thing-net-au\CosmosTypes\thingnetau.snk</AssemblyOriginatorKeyFile>
+	<RootNamespace>ThingNetAU.Cosmos.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+  </PropertyGroup>
+  <Target Name="CopyPackage" AfterTargets="Pack">
+	<Exec Command="nuget add $(OutputPath)$(PackageId).$(PackageVersion).nupkg -source s:\Nuget" />
+  </Target>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  </Target>
+
+</Project>
