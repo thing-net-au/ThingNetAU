@@ -16,7 +16,7 @@
 	<PackageProjectUrl>https://thing.net.au/libraries/tlstandard</PackageProjectUrl>
 	<Description>
 	  **ACTIVE DEVELOPMENT**
-	  This library aims to standardise Cosmos across Systems.
+	  This library aims to implement file parsers when needed.
 	</Description>
 	<Copyright>thing.net.au</Copyright>
 	<RepositoryType>git</RepositoryType>
@@ -24,7 +24,7 @@
 	<AssemblyVersion>1.0.1</AssemblyVersion>
 	<FileVersion>$(AssemblyVersion)</FileVersion>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-	<PackageLicenseExpression>CC-BY-4.0</PackageLicenseExpression>
+	<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 	<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
 	<GenerateDocumentationFile>False</GenerateDocumentationFile>
 	<Version>$(AssemblyVersion)</Version>
