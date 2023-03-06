@@ -13,14 +13,14 @@
 	<SignAssembly>True</SignAssembly>
 	<Title>Parsers</Title>
 	<Company>thing.net.au</Company>
-	<PackageProjectUrl>https://thing.net.au/libraries/tlstandard</PackageProjectUrl>
+	<PackageProjectUrl>https://github.com/thing-net-au/ThingNetAU.Parsers</PackageProjectUrl>
 	<Description>
 	  **ACTIVE DEVELOPMENT**
 	  This library aims to implement file parsers when needed.
 	</Description>
 	<Copyright>thing.net.au</Copyright>
 	<RepositoryType>git</RepositoryType>
-	<RepositoryUrl>https://github.com/thing-net-au/TranslogixTypes</RepositoryUrl>
+	<RepositoryUrl>https://github.com/thing-net-au/ThingNetAU.Parsers</RepositoryUrl>
 	<AssemblyVersion>1.0.1</AssemblyVersion>
 	<FileVersion>$(AssemblyVersion)</FileVersion>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
