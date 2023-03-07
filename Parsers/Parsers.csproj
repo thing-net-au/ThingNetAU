@@ -5,7 +5,6 @@
 	<Nullable>disable</Nullable>
 	<Platforms>AnyCPU;x86;x64</Platforms>
 	<SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>thingnetau.snk</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>ThingNetAU.Parsers</PackageId>
     <FileVersion>$(AssemblyVersion)</FileVersion>
@@ -21,14 +20,14 @@
 	<Copyright>thing.net.au</Copyright>
 	<RepositoryType>git</RepositoryType>
 	<RepositoryUrl>https://github.com/thing-net-au/ThingNetAU.Parsers</RepositoryUrl>
-	<AssemblyVersion>1.0.4</AssemblyVersion>
+	<AssemblyVersion>1.0.5</AssemblyVersion>
 	<FileVersion>$(AssemblyVersion)</FileVersion>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 	<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
 	<GenerateDocumentationFile>False</GenerateDocumentationFile>
 	<Version>$(AssemblyVersion)</Version>
-	<AssemblyOriginatorKeyFile>C:\Users\scott.OFFICE\source\repos\thing-net-au\CosmosTypes\thingnetau.snk</AssemblyOriginatorKeyFile>
+	<AssemblyOriginatorKeyFile>thingnetau.snk</AssemblyOriginatorKeyFile>
 	<RootNamespace>ThingNetAU.Cosmos.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
   <Target Name="CopyPackage" AfterTargets="Pack">

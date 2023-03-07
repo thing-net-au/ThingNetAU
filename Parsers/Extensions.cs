@@ -67,6 +67,7 @@ namespace ThingNetAU.Parsers
             }
 
             bool lockread = false;
+            bool LastCharQual = false;
             string currentread = "";
             foreach (char c in input)
             {
@@ -80,7 +81,11 @@ namespace ThingNetAU.Parsers
                     {
                         lockread = true;
                     }
-
+                    if (!LastCharQual)
+                    {
+                        LastCharQual = true;
+                        continue;
+                    }
                 }
                 if (c.Equals(',') && !lockread)
                 {
