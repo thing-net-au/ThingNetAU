@@ -21,7 +21,7 @@
 	<Copyright>thing.net.au</Copyright>
 	<RepositoryType>git</RepositoryType>
 	<RepositoryUrl>https://github.com/thing-net-au/ThingNetAU.Parsers</RepositoryUrl>
-	<AssemblyVersion>1.0.1</AssemblyVersion>
+	<AssemblyVersion>1.0.4</AssemblyVersion>
 	<FileVersion>$(AssemblyVersion)</FileVersion>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

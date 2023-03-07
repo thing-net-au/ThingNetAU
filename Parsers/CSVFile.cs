@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -16,7 +17,7 @@ namespace ThingNetAU.Parsers
         {
             string file = File.ReadAllText(filename);
             std = new DataTable();
-      //      std.Tables.Add();
+            //      std.Tables.Add();
             Boolean HeaderComplete = false;
             Boolean HeaderDone = false;
             string[] data = null;
@@ -25,21 +26,35 @@ namespace ThingNetAU.Parsers
                 if (!string.IsNullOrWhiteSpace(line))
                 {
                     if (HeaderDone) HeaderComplete = true;
-                    data = new string[std.Columns.Count];
                     int datapos = 0;
+                    if (!Headers && !HeaderComplete)
+                    {
+                        for (int i = 1; i <= line.SplitToRows().Count(); i++)
+                        {
+                            std.Columns.Add("COL" + i);
+                        }
+                        HeaderComplete = true;
+                        HeaderDone = true;
+
+                    }
+                    data = new string[std.Columns.Count];
+
                     foreach (var row in line.SplitToRows())
                     {
-                        if (Headers && !HeaderComplete)
+
+                        if (!HeaderComplete)
                         {
+
                             std.Columns.Add(row);
                             HeaderDone = true;
                         }
                         else
                         {
-                            if (datapos< data.Length)
+                            if (datapos < data.Length)
                                 data[datapos++] = row;
                         }
                     }
+
                     if (HeaderComplete)
                         std.Rows.Add(data);
                 }
@@ -78,5 +93,5 @@ namespace ThingNetAU.Parsers
             GC.SuppressFinalize(this);
         }
     }
- 
+
 }
