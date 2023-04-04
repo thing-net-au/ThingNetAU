@@ -59,7 +59,7 @@ namespace ThingNetAU.Parsers
             yield return currentread.Trim();
 
         }
-        public static IEnumerable<string> SplitToRows(this string input, char Qualifier)
+        public static IEnumerable<string> SplitToRows(this string input, char delimeter)
         {
             if (input == null)
             {
@@ -67,11 +67,10 @@ namespace ThingNetAU.Parsers
             }
 
             bool lockread = false;
-            bool LastCharQual = false;
             string currentread = "";
             foreach (char c in input)
             {
-                if (c == Qualifier)
+                if (c == ('"'))
                 {
                     if (lockread)
                     {
@@ -81,13 +80,9 @@ namespace ThingNetAU.Parsers
                     {
                         lockread = true;
                     }
-                    if (!LastCharQual)
-                    {
-                        LastCharQual = true;
-                        continue;
-                    }
+
                 }
-                if (c.Equals(',') && !lockread)
+                if (c.Equals(delimeter) && !lockread)
                 {
                     yield return currentread.Trim();
                     currentread = "";
@@ -101,5 +96,5 @@ namespace ThingNetAU.Parsers
             yield return currentread.Trim();
 
         }
-    }
+     }
 }

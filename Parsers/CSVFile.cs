@@ -60,6 +60,55 @@ namespace ThingNetAU.Parsers
                 }
             }
         }
+        public CSVFile(string filename,  int BeginAt, char Delimeter,Boolean Headers = true, string TextQualifier = "\"")
+        {
+            string file = File.ReadAllText(filename);
+            std = new DataTable();
+            //      std.Tables.Add();
+            Boolean HeaderComplete = false;
+            Boolean HeaderDone = false;
+            string[] data = null;
+            int rowcount = 0;
+            foreach (string line in file.SplitToLines())
+            {
+                if (rowcount < BeginAt-1) { rowcount++; continue; }
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    if (HeaderDone) HeaderComplete = true;
+                    int datapos = 0;
+                    if (!Headers && !HeaderComplete)
+                    {
+                        for (int i = 1; i <= line.SplitToRows( Delimeter).Count(); i++)
+                        {
+                            std.Columns.Add("COL" + i);
+                        }
+                        HeaderComplete = true;
+                        HeaderDone = true;
+
+                    }
+                    data = new string[std.Columns.Count];
+
+                    foreach (var row in line.SplitToRows(Delimeter))
+                    {
+
+                        if (!HeaderComplete)
+                        {
+
+                            std.Columns.Add(row);
+                            HeaderDone = true;
+                        }
+                        else
+                        {
+                            if (datapos < data.Length)
+                                data[datapos++] = row;
+                        }
+                    }
+
+                    if (HeaderComplete)
+                        std.Rows.Add(data);
+                }
+            }
+        }
         public DataTable GetDataTable { get { return std; } }
 
         protected virtual void Dispose(bool disposing)
