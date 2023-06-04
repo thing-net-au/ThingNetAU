@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using ThingNetAU.Parsers;
 
 namespace ThingNetAU.Parsers
 {
@@ -12,7 +13,58 @@ namespace ThingNetAU.Parsers
     {
         DataTable std = null;
         private bool disposedValue;
+     //   public Configuration configuration;
+        public CSVFile(string filename, Configuration configuration)
+        {
+            string file = File.ReadAllText(filename);
+            std = new DataTable();
+            //      std.Tables.Add();
+            Boolean HeaderComplete = false;
+            Boolean HeaderDone = false;
+            string[] data = null;
+            int CurrentRow = -1;
+            foreach (var line in file.SplitToLines())
+            {
+                CurrentRow++;
+                if(CurrentRow < configuration.IgnoreRows) { continue; }
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    if (HeaderDone) HeaderComplete = true;
+                    int datapos = 0;
+                    if (!configuration.Headers && !HeaderComplete)
+                    {
+                        for (int i = 1; i <= line.SplitToRows().Count(); i++)
+                        {
+                            std.Columns.Add("COL" + i);
+                        }
+                        HeaderComplete = true;
+                        HeaderDone = true;
 
+                    }
+                    data = new string[std.Columns.Count];
+
+                    foreach (var row in line.SplitToRows(configuration.Delimeter, configuration.TextQualifier))
+                    {
+
+                        if (!HeaderComplete)
+                        {
+
+                            std.Columns.Add(row);
+                            HeaderDone = true;
+                        }
+                        else
+                        {
+                            if (datapos < data.Length)
+                                data[datapos++] = row;
+                        }
+                    }
+
+                    if (HeaderComplete)
+                        std.Rows.Add(data);
+                }
+            }
+
+        }
         public CSVFile(string filename, Boolean Headers = true, string TextQualifier = "\"")
         {
             string file = File.ReadAllText(filename);
@@ -60,7 +112,7 @@ namespace ThingNetAU.Parsers
                 }
             }
         }
-        public CSVFile(string filename,  int BeginAt, char Delimeter,Boolean Headers = true, string TextQualifier = "\"")
+        public CSVFile(string filename,  int BeginAt, char Delimeter,Boolean Headers = true, char TextQualifier = '"')
         {
             string file = File.ReadAllText(filename);
             std = new DataTable();
@@ -78,7 +130,7 @@ namespace ThingNetAU.Parsers
                     int datapos = 0;
                     if (!Headers && !HeaderComplete)
                     {
-                        for (int i = 1; i <= line.SplitToRows( Delimeter).Count(); i++)
+                        for (int i = 1; i <= line.SplitToRows( Delimeter, TextQualifier).Count(); i++)
                         {
                             std.Columns.Add("COL" + i);
                         }
@@ -88,7 +140,7 @@ namespace ThingNetAU.Parsers
                     }
                     data = new string[std.Columns.Count];
 
-                    foreach (var row in line.SplitToRows(Delimeter))
+                    foreach (var row in line.SplitToRows(Delimeter, TextQualifier))
                     {
 
                         if (!HeaderComplete)

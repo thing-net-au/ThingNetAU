@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using ThingNetAU.Parsers;
 
 namespace Test
 {
@@ -6,7 +7,11 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            ThingNetAU.Parsers.CSVFile p = new ThingNetAU.Parsers.CSVFile("C:\\tmp\\Query Output.xls",3,'\t', true);
+            Configuration c = new Configuration();
+            c.IgnoreRows = 1;
+            c.Headers = true;
+
+            ThingNetAU.Parsers.CSVFile p = new ThingNetAU.Parsers.CSVFile("C:\\tmp\\coles.csv",c);
             DataTable g = p.GetDataTable;
             Console.WriteLine("Hello, World!");
         }

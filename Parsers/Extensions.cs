@@ -59,7 +59,7 @@ namespace ThingNetAU.Parsers
             yield return currentread.Trim();
 
         }
-        public static IEnumerable<string> SplitToRows(this string input, char delimeter)
+        public static IEnumerable<string> SplitToRows(this string input, char delimeter, char qualifier)
         {
             if (input == null)
             {
@@ -70,7 +70,7 @@ namespace ThingNetAU.Parsers
             string currentread = "";
             foreach (char c in input)
             {
-                if (c == ('"'))
+                if (c == qualifier)
                 {
                     if (lockread)
                     {
@@ -79,7 +79,7 @@ namespace ThingNetAU.Parsers
                     else
                     {
                         lockread = true;
-                    }
+                    }continue;
 
                 }
                 if (c.Equals(delimeter) && !lockread)
